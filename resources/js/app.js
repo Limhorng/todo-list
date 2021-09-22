@@ -6,7 +6,8 @@
 
 require('./bootstrap');
 import Vuetify from 'vuetify';
-import VueRouter from 'vue-router'
+import VueRouter from 'vue-router';
+import ContentComponent from './components/layouts/ContentComponent';
 
 window.Vue = require('vue').default;
 
@@ -38,5 +39,10 @@ Vue.component('content-component', require('./components/Layouts/ContentComponen
 const app = new Vue({
     el: '#app',
     vuetify: new Vuetify(),
-    router: new VueRouter(),
+    router: new VueRouter({
+        routes: [
+            { path: '/:menu', component: ContentComponent }
+        ]
+    }
+    ),
 });

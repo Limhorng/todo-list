@@ -4,6 +4,7 @@
       <v-list-item v-for="task in tasks" :key="task.id">
         <v-card class="p-3 w-100 mb-3">
           <div class="d-flex flex-no-wrap justify-space-between">
+
             <div class="w-100">
               <v-card-title>
                 {{ task.title }}
@@ -65,6 +66,9 @@ export default {
       ],
     };
   },
+  mounted() {
+      console.log(route.params.id)
+  }
 };
 </script>
 
