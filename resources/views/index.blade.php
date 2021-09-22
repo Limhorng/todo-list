@@ -9,7 +9,18 @@
     </head>
     <body >
         <div id="app">
-            <layout-component></layout-component>
+            <div class="row">
+                <div>
+                    <sidebar-component path={{$path}}></sidebar-component>
+                </div>
+                <div class="container-fluid" style="margin-left: 200px">
+                    <header-component></header-component>
+                    <content-component></content-component>
+
+                </div>
+
+            </div>
+
         </div>
     </body>
 
