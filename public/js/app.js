@@ -2173,7 +2173,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    this.$store.dispatch("task/allTasksFromAPI"); //   console.log(this.$route.params.menu)
+    this.$store.dispatch("task/allTasksFromAPI", this.$route.params.menu); //   console.log(this.$route.params.menu)
 
     setTimeout(function () {
       _this.tasks = _this.$store.getters['task/getTasks'];
@@ -2359,7 +2359,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    this.$store.dispatch("task/allTasksFromAPI"); //   console.log(this.$route.params.menu)
+    this.$store.dispatch("task/allTasksFromAPI", this.$route.params.menu); //   console.log(this.$route.params.menu)
 
     setTimeout(function () {
       _this.tasks = _this.$store.getters['task/getTasks'];
@@ -2508,18 +2508,32 @@ var task = {
     }
   },
   actions: {
-    allTasksFromAPI: function allTasksFromAPI(context) {
+    allTasksFromAPI: function allTasksFromAPI(context, filter) {
       axios.get("api/todos.json").then(function (response) {
-        // console.log(response.data)
-        context.commit("setTasks", response.data);
+        var data = response.data;
+        context.commit("filterTasks", {
+          data: data,
+          filter: filter
+        });
       })["catch"](function () {
         console.log("Error........");
       });
     }
   },
   mutations: {
-    setTasks: function setTasks(state, data) {
-      return state.tasks = data;
+    filterTasks: function filterTasks(state, _ref) {
+      var data = _ref.data,
+          filter = _ref.filter;
+      var tasks = data;
+
+      if (filter) {
+        tasks = tasks.filter(function (task) {
+          return task.status === filter;
+        });
+      }
+
+      console.log(filter);
+      return state.tasks = tasks;
     }
   }
 };

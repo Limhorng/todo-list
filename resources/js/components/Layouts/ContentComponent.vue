@@ -42,7 +42,7 @@ export default {
         };
     },
     mounted() {
-        this.$store.dispatch("task/allTasksFromAPI");
+        this.$store.dispatch("task/allTasksFromAPI", this.$route.params.menu);
         //   console.log(this.$route.params.menu)
         setTimeout(() => {
           this.tasks = this.$store.getters['task/getTasks']
