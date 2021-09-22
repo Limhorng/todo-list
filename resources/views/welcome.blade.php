@@ -9,10 +9,9 @@
     </head>
     <body >
         <div id="app">
-            {{$hello = "hello"}}
-            <example-component></example-component>
+            <layout-component></layout-component>
         </div>
     </body>
-    
+
     <script src="{{ asset('js/app.js') }}"> </script>
 </html>
