@@ -69,4 +69,15 @@ class TaskController extends Controller
             "task" => $task
         ]);
     }
+
+    public function deleteTask(Request $request){
+        $taskId = $request->get("taskId");
+        $task = Task::find($taskId);
+        $task->delete();
+
+        return response()->json([
+            "status" => 200,
+            "message" => "The task has been removed successfully"
+        ]);
+    }   
 }
