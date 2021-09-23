@@ -51,4 +51,22 @@ class TaskController extends Controller
             'message' => 'Task has been updated successfullly',
         ]);
     }
+
+    public function createTask(Request $request){
+        $title = $request->post('title');
+        $description = $request->post('description');
+        $status = $request->post('status');
+
+        $task = Task::create([
+            "title" => $title,
+            "description" => $description,
+            "status" => $status,
+        ]);
+        $task->save();
+
+        return response()->json([
+            "status" => 200,
+            "task" => $task
+        ]);
+    }
 }

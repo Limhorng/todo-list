@@ -2115,12 +2115,79 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     TaskComponent: _TaskComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['menu'],
+  props: ["menu"],
+  data: function data() {
+    return {
+      dialog: false
+    };
+  },
   computed: {
     tasks: {
       get: function get() {
@@ -2139,7 +2206,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     fetchTasks: function fetchTasks(menu) {
       this.$store.dispatch("task/allTasksFromAPI", menu);
-    }
+    },
+    createTask: function createTask() {}
   },
   mounted: function mounted() {
     this.fetchTasks(this.menu);
@@ -2381,12 +2449,79 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     TaskComponent: _TaskComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['menu'],
+  props: ["menu"],
+  data: function data() {
+    return {
+      dialog: false
+    };
+  },
   computed: {
     tasks: {
       get: function get() {
@@ -2405,7 +2540,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     fetchTasks: function fetchTasks(menu) {
       this.$store.dispatch("task/allTasksFromAPI", menu);
-    }
+    },
+    createTask: function createTask() {}
   },
   mounted: function mounted() {
     this.fetchTasks(this.menu);
@@ -39349,19 +39485,212 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-container",
-    { staticClass: "bg-light", staticStyle: { height: "calc(100vh - 52px)" } },
+    "v-app",
     [
       _c(
-        "v-list",
-        _vm._l(_vm.tasks, function(task) {
-          return _c(
-            "v-list-item",
-            { key: task.id },
-            [_c("task-component", { attrs: { task: task } })],
-            1
+        "v-container",
+        {
+          staticClass: "bg-light",
+          staticStyle: { height: "calc(100vh - 52px)" }
+        },
+        [
+          _c(
+            "v-list",
+            [
+              _c(
+                "v-list-item",
+                [
+                  _c(
+                    "v-dialog",
+                    {
+                      attrs: { persistent: "", "max-width": "600px" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "activator",
+                          fn: function(ref) {
+                            var on = ref.on
+                            var attrs = ref.attrs
+                            return [
+                              _c(
+                                "v-card",
+                                _vm._g(
+                                  _vm._b(
+                                    {
+                                      staticClass:
+                                        "border dashed w-100 p-3 mb-3 bg-light text-center align-center d-flex",
+                                      staticStyle: { height: "150px" }
+                                    },
+                                    "v-card",
+                                    attrs,
+                                    false
+                                  ),
+                                  on
+                                ),
+                                [
+                                  _c(
+                                    "v-card-text",
+                                    {
+                                      staticStyle: {
+                                        "font-size": "48px",
+                                        "font-weight": "bold",
+                                        margin: "auto"
+                                      }
+                                    },
+                                    [_vm._v("+")]
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          }
+                        }
+                      ]),
+                      model: {
+                        value: _vm.dialog,
+                        callback: function($$v) {
+                          _vm.dialog = $$v
+                        },
+                        expression: "dialog"
+                      }
+                    },
+                    [
+                      _vm._v(" "),
+                      _c(
+                        "v-card",
+                        [
+                          _c("v-card-title", [
+                            _c("span", { staticClass: "text-h5" }, [
+                              _vm._v("Create Task")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-text",
+                            [
+                              _c(
+                                "v-container",
+                                [
+                                  _c(
+                                    "v-col",
+                                    [
+                                      _c(
+                                        "v-col",
+                                        {
+                                          attrs: {
+                                            cols: "12",
+                                            sm: "12",
+                                            md: "12"
+                                          }
+                                        },
+                                        [
+                                          _c("v-text-field", {
+                                            attrs: {
+                                              label: "Title*",
+                                              required: "",
+                                              hint:
+                                                "example of helper text only on focus"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-col",
+                                        {
+                                          attrs: {
+                                            cols: "12",
+                                            sm: "12",
+                                            md: "12"
+                                          }
+                                        },
+                                        [
+                                          _c("v-textarea", {
+                                            attrs: {
+                                              label: "Description",
+                                              hint:
+                                                "example of helper text only on focus",
+                                              resize: "false"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("small", [_vm._v("*indicates required field")])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-actions",
+                            [
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { color: "blue darken-1", text: "" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.dialog = false
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                Close\n                            "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { color: "blue darken-1", text: "" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.dialog = false
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                Save\n                            "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.tasks, function(task) {
+                return _c(
+                  "v-list-item",
+                  { key: task.id },
+                  [_c("task-component", { attrs: { task: task } })],
+                  1
+                )
+              })
+            ],
+            2
           )
-        }),
+        ],
         1
       )
     ],
@@ -39608,19 +39937,212 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-container",
-    { staticClass: "bg-light", staticStyle: { height: "calc(100vh - 52px)" } },
+    "v-app",
     [
       _c(
-        "v-list",
-        _vm._l(_vm.tasks, function(task) {
-          return _c(
-            "v-list-item",
-            { key: task.id },
-            [_c("task-component", { attrs: { task: task } })],
-            1
+        "v-container",
+        {
+          staticClass: "bg-light",
+          staticStyle: { height: "calc(100vh - 52px)" }
+        },
+        [
+          _c(
+            "v-list",
+            [
+              _c(
+                "v-list-item",
+                [
+                  _c(
+                    "v-dialog",
+                    {
+                      attrs: { persistent: "", "max-width": "600px" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "activator",
+                          fn: function(ref) {
+                            var on = ref.on
+                            var attrs = ref.attrs
+                            return [
+                              _c(
+                                "v-card",
+                                _vm._g(
+                                  _vm._b(
+                                    {
+                                      staticClass:
+                                        "border dashed w-100 p-3 mb-3 bg-light text-center align-center d-flex",
+                                      staticStyle: { height: "150px" }
+                                    },
+                                    "v-card",
+                                    attrs,
+                                    false
+                                  ),
+                                  on
+                                ),
+                                [
+                                  _c(
+                                    "v-card-text",
+                                    {
+                                      staticStyle: {
+                                        "font-size": "48px",
+                                        "font-weight": "bold",
+                                        margin: "auto"
+                                      }
+                                    },
+                                    [_vm._v("+")]
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          }
+                        }
+                      ]),
+                      model: {
+                        value: _vm.dialog,
+                        callback: function($$v) {
+                          _vm.dialog = $$v
+                        },
+                        expression: "dialog"
+                      }
+                    },
+                    [
+                      _vm._v(" "),
+                      _c(
+                        "v-card",
+                        [
+                          _c("v-card-title", [
+                            _c("span", { staticClass: "text-h5" }, [
+                              _vm._v("Create Task")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-text",
+                            [
+                              _c(
+                                "v-container",
+                                [
+                                  _c(
+                                    "v-col",
+                                    [
+                                      _c(
+                                        "v-col",
+                                        {
+                                          attrs: {
+                                            cols: "12",
+                                            sm: "12",
+                                            md: "12"
+                                          }
+                                        },
+                                        [
+                                          _c("v-text-field", {
+                                            attrs: {
+                                              label: "Title*",
+                                              required: "",
+                                              hint:
+                                                "example of helper text only on focus"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-col",
+                                        {
+                                          attrs: {
+                                            cols: "12",
+                                            sm: "12",
+                                            md: "12"
+                                          }
+                                        },
+                                        [
+                                          _c("v-textarea", {
+                                            attrs: {
+                                              label: "Description",
+                                              hint:
+                                                "example of helper text only on focus",
+                                              resize: "false"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("small", [_vm._v("*indicates required field")])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-actions",
+                            [
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { color: "blue darken-1", text: "" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.dialog = false
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                Close\n                            "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { color: "blue darken-1", text: "" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.dialog = false
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                Save\n                            "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.tasks, function(task) {
+                return _c(
+                  "v-list-item",
+                  { key: task.id },
+                  [_c("task-component", { attrs: { task: task } })],
+                  1
+                )
+              })
+            ],
+            2
           )
-        }),
+        ],
         1
       )
     ],
