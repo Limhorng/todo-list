@@ -11,32 +11,34 @@
 
 <script>
 import TaskComponent from '../TaskComponent.vue';
+
 export default {
   components: { TaskComponent },
     props:[
         'menu'
     ],
-    data(){
-        return{
-            tasks: []
-        }
+    computed: {
+        tasks: {
+            get() {
+                return this.$store.getters["task/getTasks"];
+            },
+            set(tasks) {
+                return tasks
+            }
+        } 
+        
     },
     watch:{
         menu: function(newMenu, oldVal){
-            // console.log(newMenu)
             this.fetchTasks(newMenu);
         }
     },
     methods:{
         fetchTasks(menu){
             this.$store.dispatch("task/allTasksFromAPI", menu);
-            setTimeout(() => {
-                this.tasks = this.$store.getters['task/getTasks']
-            }, 500);
         }
     },
     mounted() {
-        console.log("Content Component is rendered");
         this.fetchTasks(this.menu)
     },
 };

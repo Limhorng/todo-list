@@ -2159,29 +2159,27 @@ __webpack_require__.r(__webpack_exports__);
     TaskComponent: _TaskComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: ['menu'],
-  data: function data() {
-    return {
-      tasks: []
-    };
+  computed: {
+    tasks: {
+      get: function get() {
+        return this.$store.getters["task/getTasks"];
+      },
+      set: function set(tasks) {
+        return tasks;
+      }
+    }
   },
   watch: {
     menu: function menu(newMenu, oldVal) {
-      // console.log(newMenu)
       this.fetchTasks(newMenu);
     }
   },
   methods: {
     fetchTasks: function fetchTasks(menu) {
-      var _this = this;
-
       this.$store.dispatch("task/allTasksFromAPI", menu);
-      setTimeout(function () {
-        _this.tasks = _this.$store.getters['task/getTasks'];
-      }, 500);
     }
   },
   mounted: function mounted() {
-    console.log("Content Component is rendered");
     this.fetchTasks(this.menu);
   }
 });
@@ -2398,29 +2396,27 @@ __webpack_require__.r(__webpack_exports__);
     TaskComponent: _TaskComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: ['menu'],
-  data: function data() {
-    return {
-      tasks: []
-    };
+  computed: {
+    tasks: {
+      get: function get() {
+        return this.$store.getters["task/getTasks"];
+      },
+      set: function set(tasks) {
+        return tasks;
+      }
+    }
   },
   watch: {
     menu: function menu(newMenu, oldVal) {
-      // console.log(newMenu)
       this.fetchTasks(newMenu);
     }
   },
   methods: {
     fetchTasks: function fetchTasks(menu) {
-      var _this = this;
-
       this.$store.dispatch("task/allTasksFromAPI", menu);
-      setTimeout(function () {
-        _this.tasks = _this.$store.getters['task/getTasks'];
-      }, 500);
     }
   },
   mounted: function mounted() {
-    console.log("Content Component is rendered");
     this.fetchTasks(this.menu);
   }
 });
@@ -2592,6 +2588,8 @@ var task = {
                     filter: filter
                   });
                   console.log(context.state.tasks);
+                })["catch"](function () {
+                  console.log("Error........");
                 });
 
               case 2:
@@ -2617,11 +2615,14 @@ var task = {
                       if (task.id !== taskId) return true;
                     });
                     context.commit("filterTasks", {
-                      data: tasks,
+                      data: {
+                        tasks: tasks
+                      },
                       filter: null
                     });
-                    console.log(context.state.tasks);
                   }
+                })["catch"](function () {
+                  console.log("Error........");
                 });
 
               case 2:
@@ -2647,10 +2648,11 @@ var task = {
                       if (task.id !== taskId) return true;
                     });
                     context.commit("filterTasks", {
-                      data: tasks,
+                      data: {
+                        tasks: tasks
+                      },
                       filter: null
                     });
-                    console.log(context.state.tasks);
                   }
                 });
 
@@ -2677,10 +2679,11 @@ var task = {
                       if (task.id !== taskId) return true;
                     });
                     context.commit("filterTasks", {
-                      data: tasks,
+                      data: {
+                        tasks: tasks
+                      },
                       filter: null
                     });
-                    console.log(context.state.tasks);
                   }
                 });
 
@@ -2705,6 +2708,8 @@ var task = {
                   data: data,
                   filter: filter
                 }); // console.log(context.state.tasks)
+              })["catch"](function () {
+                console.log("Error........");
               });
 
             case 2:
@@ -2727,7 +2732,6 @@ var task = {
         });
       }
 
-      console.log("Before calling API:", state.tasks);
       return state.tasks = tasks;
     }
   }

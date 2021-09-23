@@ -20,9 +20,9 @@ const task = {
                     console.log(context.state.tasks)
 
                 })
-                // .catch(() => {
-                //     console.log("Error........")
-                // })
+                .catch(() => {
+                    console.log("Error........")
+                })
         },
         async updateTaskStatusToTodo(context,taskId) {
             await axios.get(`/api/update-task-status-to-todo?taskId=${taskId}`)
@@ -30,13 +30,12 @@ const task = {
                     const data = response.data
                     if(data.status === 200){
                         const tasks = context.state.tasks.filter((task) => { if(task.id !== taskId) return true});
-                        context.commit("filterTasks",{data:tasks,filter:null});
-                        console.log(context.state.tasks);
+                        context.commit("filterTasks",{data:{tasks},filter:null});
                     }
                 })
-                // .catch(() => {
-                //     console.log("Error........")
-                // })
+                .catch(() => {
+                    console.log("Error........")
+                })
         },
 
         async updateTaskStatusToInProgress(context,taskId) {
@@ -45,8 +44,7 @@ const task = {
                     const data = response.data
                     if(data.status === 200){
                         const tasks = context.state.tasks.filter((task) => { if(task.id !== taskId) return true});
-                        context.commit("filterTasks",{data:tasks,filter:null})
-                        console.log(context.state.tasks);
+                        context.commit("filterTasks",{data:{tasks},filter:null})
                     }
                     
                 })
@@ -61,8 +59,7 @@ const task = {
                     const data = response.data
                     if(data.status === 200){
                         const tasks = context.state.tasks.filter((task) => { if(task.id !== taskId) return true});
-                        context.commit("filterTasks",{data:tasks,filter:null})
-                        console.log(context.state.tasks);
+                        context.commit("filterTasks",{data:{tasks},filter:null})
                     }
                 })
                 // .catch(() => {
@@ -77,9 +74,9 @@ const task = {
                     // console.log(context.state.tasks)
 
                 })
-                // .catch(() => {
-                //     console.log("Error........")
-                // })
+                .catch(() => {
+                    console.log("Error........")
+                })
         }
     },
 
@@ -89,7 +86,6 @@ const task = {
             if (filter !== null && ['todo','done','in-progress'].includes(filter)){
                 tasks = tasks.filter((task) => task.status === filter)
             }
-            console.log("Before calling API:",state.tasks);
             return state.tasks = tasks
         }
     }
