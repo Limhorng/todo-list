@@ -44,6 +44,7 @@ Vue.component('layout-component', require('./components/LayoutComponent.vue').de
 Vue.component('sidebar-component', require('./components/Layouts/SidebarComponent.vue').default);
 Vue.component('header-component', require('./components/Layouts/HeaderComponent.vue').default);
 Vue.component('content-component', require('./components/Layouts/ContentComponent.vue').default);
+Vue.component('task-component', require('./components/TaskComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -56,7 +57,7 @@ const app = new Vue({
     vuetify: new Vuetify(),
     router: new VueRouter({
         routes: [
-            { path: '/:menu', component: ContentComponent }
+            { path: '/:menu', component: ContentComponent, props:true }
         ]
     }
     ),

@@ -9,18 +9,17 @@
     </head>
     <body >
         <div id="app">
+            {{-- <layout-component></layout-component> --}}
             <div class="row">
                 <div>
-                    <sidebar-component path={{$path}}></sidebar-component>
+                    <sidebar-component></sidebar-component>
+                    {{-- {{$path}} --}}
                 </div>
                 <div class="container-fluid" style="margin-left: 200px">
                     <header-component></header-component>
-                    <content-component></content-component>
-
+                    <router-view></router-view>
                 </div>
-
             </div>
-
         </div>
     </body>
 

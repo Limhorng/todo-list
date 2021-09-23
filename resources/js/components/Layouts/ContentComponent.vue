@@ -2,52 +2,42 @@
     <v-container class="bg-light" style="height: calc(100vh - 52px)">
         <v-list>
             <v-list-item v-for="task in tasks" :key="task.id">
-                <v-card class="p-3 w-100 mb-3">
-                    <div class="d-flex flex-no-wrap justify-space-between">
-                        <div class="w-100">
-                            <v-card-title>
-                                {{ task.title }}
-                            </v-card-title>
-                            <v-card-text>
-                                {{ task.description }}
-                            </v-card-text>
-                        </div>
-                        <div>
-                            <div
-                                class="d-flex flex-column justify-space-between"
-                            >
-                                <v-btn class="mt-1" outlined rounded small>
-                                    Move to Todo
-                                </v-btn>
-                                <v-btn class="mt-1" outlined rounded small>
-                                    Move to In-Progress
-                                </v-btn>
-                                <v-btn class="mt-1" outlined rounded small>
-                                    Move to Done
-                                </v-btn>
-                            </div>
-                        </div>
-                    </div>
-                </v-card>
+                <task-component :task="task"/>
             </v-list-item>
         </v-list>
+        <!-- {{menu}} -->
     </v-container>
 </template>
 
 <script>
+import TaskComponent from '../TaskComponent.vue';
 export default {
-    data() {
-        return {
+  components: { TaskComponent },
+    props:[
+        'menu'
+    ],
+    data(){
+        return{
             tasks: []
-        };
+        }
+    },
+    watch:{
+        menu: function(newMenu, oldVal){
+            // console.log(newMenu)
+            this.fetchTasks(newMenu);
+        }
+    },
+    methods:{
+        fetchTasks(menu){
+            this.$store.dispatch("task/allTasksFromAPI", menu);
+            setTimeout(() => {
+                this.tasks = this.$store.getters['task/getTasks']
+            }, 500);
+        }
     },
     mounted() {
-        this.$store.dispatch("task/allTasksFromAPI", this.$route.params.menu);
-        //   console.log(this.$route.params.menu)
-        setTimeout(() => {
-          this.tasks = this.$store.getters['task/getTasks']
-        }, 1000);
-        // this.tasks = this.$store.getters('task/getTasks')
+        console.log("Content Component is rendered");
+        this.fetchTasks(this.menu)
     },
 };
 </script>

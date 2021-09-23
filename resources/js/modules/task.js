@@ -12,15 +12,17 @@ const task = {
     },
 
     actions: {
-        allTasksFromAPI(context,filter) {
-            axios.get("api/todos.json")
+        async allTasksFromAPI(context,filter) {
+            await axios.get("api/todos.json")
                 .then((response) => {
                     const data = response.data
                     context.commit("filterTasks",{data,filter})
+                    // console.log(context.state.tasks)
+
                 })
-                .catch(() => {
-                    console.log("Error........")
-                })
+                // .catch(() => {
+                //     console.log("Error........")
+                // })
         }
     },
 
@@ -30,7 +32,6 @@ const task = {
             if (filter){
                 tasks = tasks.filter((task) => task.status === filter)
             }
-            console.log(filter);
             return state.tasks = tasks
         }
     }

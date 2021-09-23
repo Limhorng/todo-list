@@ -31,11 +31,6 @@
 
 <script>
 export default {
-  props: {
-    path: {
-      type: String,
-    },
-  },
   data() {
     return {
       selected: null,
@@ -61,20 +56,18 @@ export default {
   },
   methods: {
     setSelected(id) {
-      // this.$emit("emitSelected", this.menuLists.find((m) => m.id === id).title) //Not working since the blade file is a serverside rendering
-      //Suggestion: using URIs query
-      //   console.log(this.menuLists.find((m) => m.id === id).name);
       this.selected = id;
-      // console.log(this.selected);
+      const selectedPath = this.menuLists.find((menu) => menu.id === id).path;
+      this.$store.dispatch("task/allTasksFromAPI", selectedPath );
     },
   },
   mounted() {
-    console.log(this.path);
-    if (this.path == "todo") {
+    const path = this.$route.params.menu; 
+    if (path == "todo") {
       this.setSelected(1);
-    } else if (this.path == "in-progress") {
+    } else if (path == "in-progress") {
       this.setSelected(2);
-    } else if (this.path == "done") {
+    } else if (path == "done") {
       this.setSelected(3);
     } else {
       this.setSelected(1);
