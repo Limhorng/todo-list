@@ -11,6 +11,7 @@ import ContentComponent from './components/layouts/ContentComponent';
 import Vue from 'vue';
 import Vuex from 'vuex'
 import task from './modules/task'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 
 window.Vue = require('vue').default;
@@ -53,7 +54,11 @@ Vue.component('task-component', require('./components/TaskComponent.vue').defaul
 
 const app = new Vue({
     el: '#app',
-    vuetify: new Vuetify(),
+    vuetify: new Vuetify({
+        icons: {
+            iconfont: 'md',
+          },
+    }),
     router: new VueRouter({
         routes: [
             { path: '/:menu', component: ContentComponent, props:true }

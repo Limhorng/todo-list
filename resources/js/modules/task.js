@@ -93,6 +93,16 @@ const task = {
                     context.commit("addTask",newTask)
                 }
             })
+        },
+        async deleteTask(context,taskId){
+            await axios({
+                method: "GET",
+                url: "/api/delete-task?taskId="+taskId,
+            }).then((response) => {
+                if(response.status === 200){
+                    context.commit("removeTask",taskId)
+                }
+            })
         }
     },
 
@@ -106,6 +116,9 @@ const task = {
         },
         addTask(state,task){
             return state.tasks.unshift(task)
+        },
+        removeTask(state,taskId){
+            return state.tasks = state.tasks.filter((task) => task.id === taskId ? false : true);
         }
         
     }

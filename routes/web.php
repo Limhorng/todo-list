@@ -13,8 +13,12 @@ use App\Http\Controllers\TaskController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [TaskController::class, 'index'])->name("todo");
-// Route::get('/', function(){
-//     return redirect(route("todo","todo"));
-// });
 
+Route::get('/', [TaskController::class, 'index'])->name("todo");
+Route::get('/{path}', function ($path) {
+    if (in_array($path, ["todo", "in-progress", "done"])) {
+        return redirect("/#/" . $path);
+    } else {
+        abort(404);
+    }
+});
