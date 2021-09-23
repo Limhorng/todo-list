@@ -1,3 +1,5 @@
+import axios from "axios"
+
 const task = {
     namespaced:true,
     state: {
@@ -77,6 +79,20 @@ const task = {
                 .catch(() => {
                     console.log("Error........")
                 })
+        },
+        async createTask(context,taskFormData){
+            console.log(taskFormData.get("status"));
+            await axios({
+                method: "POST",
+                url: "/api/create-task",
+                data: taskFormData,
+                header: {"Content-Type":"multipart/form-data"}
+            }).then((response) => {
+                let newTask = response.data.task;
+                if(response.status === 200){
+                    context.commit("addTask",newTask)
+                }
+            })
         }
     },
 
@@ -87,7 +103,11 @@ const task = {
                 tasks = tasks.filter((task) => task.status === filter)
             }
             return state.tasks = tasks
+        },
+        addTask(state,task){
+            return state.tasks.unshift(task)
         }
+        
     }
 }
 export default task;

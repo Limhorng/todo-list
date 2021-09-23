@@ -12,7 +12,7 @@ class TaskController extends Controller
 
         return response()->json([
             'status' => 200,
-            'tasks' => Task::get(),
+            'tasks' => Task::orderBy("created_at","DESC")->get(),
         ]);
     }
 

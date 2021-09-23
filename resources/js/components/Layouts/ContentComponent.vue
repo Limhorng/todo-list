@@ -1,6 +1,6 @@
 <template>
-    <v-app>
-        <v-container class="bg-light" style="height: calc(100vh - 52px)">
+    <v-app class="bg-light" style="height: auto">
+        <v-container class="bg-light" style="height: auto">
             <v-list>
                 <v-list-item>
                     <v-dialog v-model="dialog" persistent max-width="600px">
@@ -29,6 +29,7 @@
                                                 label="Title*"
                                                 required
                                                 hint="example of helper text only on focus"
+                                                v-model="title"
                                             ></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="12" md="12">
@@ -36,6 +37,7 @@
                                                 label="Description"
                                                 hint="example of helper text only on focus"
                                                 resize=false
+                                                v-model="description"
                                             ></v-textarea>
                                         </v-col>
                                     </v-col>
@@ -54,7 +56,7 @@
                                 <v-btn
                                     color="blue darken-1"
                                     text
-                                    @click="dialog = false"
+                                    @click="createTask"
                                 >
                                     Save
                                 </v-btn>
@@ -79,7 +81,9 @@ export default {
     props: ["menu"],
     data() {
         return {
-            dialog: false
+            dialog: false,
+            title: '',
+            description: '',
         };
     },
     computed: {
@@ -102,7 +106,18 @@ export default {
             this.$store.dispatch("task/allTasksFromAPI", menu);
         },
         createTask(){
-            
+            const taskFormData = new FormData();
+            taskFormData.append("title",this.title);
+            taskFormData.append("description",this.description);
+            taskFormData.append("status",this.menu);
+            console.log(this.status);
+            this.$store.dispatch("task/createTask",taskFormData);
+
+            this.title = "";
+            this.description = "";
+            this.status = this.menu;
+
+            this.dialog = false;
         }
         
     },

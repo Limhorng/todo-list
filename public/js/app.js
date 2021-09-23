@@ -2177,6 +2177,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2185,7 +2187,9 @@ __webpack_require__.r(__webpack_exports__);
   props: ["menu"],
   data: function data() {
     return {
-      dialog: false
+      dialog: false,
+      title: '',
+      description: ''
     };
   },
   computed: {
@@ -2207,7 +2211,18 @@ __webpack_require__.r(__webpack_exports__);
     fetchTasks: function fetchTasks(menu) {
       this.$store.dispatch("task/allTasksFromAPI", menu);
     },
-    createTask: function createTask() {}
+    createTask: function createTask() {
+      var taskFormData = new FormData();
+      taskFormData.append("title", this.title);
+      taskFormData.append("description", this.description);
+      taskFormData.append("status", this.menu);
+      console.log(this.status);
+      this.$store.dispatch("task/createTask", taskFormData);
+      this.title = "";
+      this.description = "";
+      this.status = this.menu;
+      this.dialog = false;
+    }
   },
   mounted: function mounted() {
     this.fetchTasks(this.menu);
@@ -2511,6 +2526,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2519,7 +2536,9 @@ __webpack_require__.r(__webpack_exports__);
   props: ["menu"],
   data: function data() {
     return {
-      dialog: false
+      dialog: false,
+      title: '',
+      description: ''
     };
   },
   computed: {
@@ -2541,7 +2560,18 @@ __webpack_require__.r(__webpack_exports__);
     fetchTasks: function fetchTasks(menu) {
       this.$store.dispatch("task/allTasksFromAPI", menu);
     },
-    createTask: function createTask() {}
+    createTask: function createTask() {
+      var taskFormData = new FormData();
+      taskFormData.append("title", this.title);
+      taskFormData.append("description", this.description);
+      taskFormData.append("status", this.menu);
+      console.log(this.status);
+      this.$store.dispatch("task/createTask", taskFormData);
+      this.title = "";
+      this.description = "";
+      this.status = this.menu;
+      this.dialog = false;
+    }
   },
   mounted: function mounted() {
     this.fetchTasks(this.menu);
@@ -2680,6 +2710,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+var _actions;
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -2687,6 +2721,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 var task = {
   namespaced: true,
@@ -2699,7 +2734,7 @@ var task = {
       return state.tasks;
     }
   },
-  actions: _defineProperty({
+  actions: (_actions = {
     allTasksFromAPI: function allTasksFromAPI(context, filter) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -2707,7 +2742,7 @@ var task = {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get("/api/get-tasks").then(function (response) {
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/get-tasks").then(function (response) {
                   var data = response.data;
                   context.commit("filterTasks", {
                     data: data,
@@ -2733,7 +2768,7 @@ var task = {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios.get("/api/update-task-status-to-todo?taskId=".concat(taskId)).then(function (response) {
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/update-task-status-to-todo?taskId=".concat(taskId)).then(function (response) {
                   var data = response.data;
 
                   if (data.status === 200) {
@@ -2766,7 +2801,7 @@ var task = {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return axios.get("/api/update-task-status-to-in-progress?taskId=".concat(taskId)).then(function (response) {
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/update-task-status-to-in-progress?taskId=".concat(taskId)).then(function (response) {
                   var data = response.data;
 
                   if (data.status === 200) {
@@ -2799,7 +2834,7 @@ var task = {
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return axios.get("/api/update-task-status-to-done?taskId=".concat(taskId)).then(function (response) {
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/update-task-status-to-done?taskId=".concat(taskId)).then(function (response) {
                   var data = response.data;
 
                   if (data.status === 200) {
@@ -2825,14 +2860,14 @@ var task = {
         }, _callee4);
       }))();
     }
-  }, "allTasksFromAPI", function allTasksFromAPI(context, filter) {
+  }, _defineProperty(_actions, "allTasksFromAPI", function allTasksFromAPI(context, filter) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
               _context5.next = 2;
-              return axios.get("/api/get-tasks").then(function (response) {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/get-tasks").then(function (response) {
                 var data = response.data;
                 context.commit("filterTasks", {
                   data: data,
@@ -2849,7 +2884,37 @@ var task = {
         }
       }, _callee5);
     }))();
-  }),
+  }), _defineProperty(_actions, "createTask", function createTask(context, taskFormData) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              console.log(taskFormData.get("status"));
+              _context6.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default()({
+                method: "POST",
+                url: "/api/create-task",
+                data: taskFormData,
+                header: {
+                  "Content-Type": "multipart/form-data"
+                }
+              }).then(function (response) {
+                var newTask = response.data.task;
+
+                if (response.status === 200) {
+                  context.commit("addTask", newTask);
+                }
+              });
+
+            case 3:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, _callee6);
+    }))();
+  }), _actions),
   mutations: {
     filterTasks: function filterTasks(state, _ref) {
       var data = _ref.data,
@@ -2863,6 +2928,9 @@ var task = {
       }
 
       return state.tasks = tasks;
+    },
+    addTask: function addTask(state, task) {
+      return state.tasks.unshift(task);
     }
   }
 };
@@ -39486,13 +39554,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-app",
+    { staticClass: "bg-light", staticStyle: { height: "auto" } },
     [
       _c(
         "v-container",
-        {
-          staticClass: "bg-light",
-          staticStyle: { height: "calc(100vh - 52px)" }
-        },
+        { staticClass: "bg-light", staticStyle: { height: "auto" } },
         [
           _c(
             "v-list",
@@ -39589,6 +39655,13 @@ var render = function() {
                                               required: "",
                                               hint:
                                                 "example of helper text only on focus"
+                                            },
+                                            model: {
+                                              value: _vm.title,
+                                              callback: function($$v) {
+                                                _vm.title = $$v
+                                              },
+                                              expression: "title"
                                             }
                                           })
                                         ],
@@ -39611,6 +39684,13 @@ var render = function() {
                                               hint:
                                                 "example of helper text only on focus",
                                               resize: "false"
+                                            },
+                                            model: {
+                                              value: _vm.description,
+                                              callback: function($$v) {
+                                                _vm.description = $$v
+                                              },
+                                              expression: "description"
                                             }
                                           })
                                         ],
@@ -39654,11 +39734,7 @@ var render = function() {
                                 "v-btn",
                                 {
                                   attrs: { color: "blue darken-1", text: "" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.dialog = false
-                                    }
-                                  }
+                                  on: { click: _vm.createTask }
                                 },
                                 [
                                   _vm._v(
@@ -39938,13 +40014,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-app",
+    { staticClass: "bg-light", staticStyle: { height: "auto" } },
     [
       _c(
         "v-container",
-        {
-          staticClass: "bg-light",
-          staticStyle: { height: "calc(100vh - 52px)" }
-        },
+        { staticClass: "bg-light", staticStyle: { height: "auto" } },
         [
           _c(
             "v-list",
@@ -40041,6 +40115,13 @@ var render = function() {
                                               required: "",
                                               hint:
                                                 "example of helper text only on focus"
+                                            },
+                                            model: {
+                                              value: _vm.title,
+                                              callback: function($$v) {
+                                                _vm.title = $$v
+                                              },
+                                              expression: "title"
                                             }
                                           })
                                         ],
@@ -40063,6 +40144,13 @@ var render = function() {
                                               hint:
                                                 "example of helper text only on focus",
                                               resize: "false"
+                                            },
+                                            model: {
+                                              value: _vm.description,
+                                              callback: function($$v) {
+                                                _vm.description = $$v
+                                              },
+                                              expression: "description"
                                             }
                                           })
                                         ],
@@ -40106,11 +40194,7 @@ var render = function() {
                                 "v-btn",
                                 {
                                   attrs: { color: "blue darken-1", text: "" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.dialog = false
-                                    }
-                                  }
+                                  on: { click: _vm.createTask }
                                 },
                                 [
                                   _vm._v(
