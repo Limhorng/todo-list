@@ -2437,11 +2437,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     task: {
       require: true
     }
+  },
+  data: function data() {
+    return {
+      dialog: false
+    };
   },
   methods: {
     moveToToDo: function moveToToDo() {
@@ -2459,6 +2483,7 @@ __webpack_require__.r(__webpack_exports__);
     removeTask: function removeTask() {
       var taskId = this.task.id;
       this.$store.dispatch("task/deleteTask", taskId);
+      dialog = false;
     }
   }
 });
@@ -40497,89 +40522,170 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("v-card", { staticClass: "p-3 w-100 mb-3" }, [
-    _c("div", { staticClass: "d-flex flex-no-wrap justify-space-between" }, [
-      _c(
-        "div",
-        { staticClass: "w-100" },
-        [
-          _c("v-card-title", [
-            _vm._v(
-              "\n                " + _vm._s(_vm.task.title) + "\n            "
+  return _c(
+    "v-card",
+    { staticClass: "p-3 w-100 mb-3" },
+    [
+      _c("div", { staticClass: "d-flex flex-no-wrap justify-space-between" }, [
+        _c(
+          "div",
+          { staticClass: "w-100" },
+          [
+            _c("v-card-title", [
+              _vm._v(
+                "\n                " + _vm._s(_vm.task.title) + "\n            "
+              )
+            ]),
+            _vm._v(" "),
+            _c("v-card-text", [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.task.description) +
+                  "\n            "
+              )
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "d-flex flex-row justify-content-between align-center"
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "d-flex flex-column justify-space-between mr-3" },
+              [
+                _c(
+                  "v-btn",
+                  {
+                    staticClass: "mt-1",
+                    attrs: { outlined: "", rounded: "", small: "" },
+                    on: { click: _vm.moveToToDo }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Move to Todo\n                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-btn",
+                  {
+                    staticClass: "mt-1",
+                    attrs: { outlined: "", rounded: "", small: "" },
+                    on: { click: _vm.moveToInProgress }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Move to In-Progress\n                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-btn",
+                  {
+                    staticClass: "mt-1",
+                    attrs: { outlined: "", rounded: "", small: "" },
+                    on: { click: _vm.moveToDone }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Move to Done\n                "
+                    )
+                  ]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-btn",
+              {
+                staticClass: "bg-white",
+                attrs: { rounded: "" },
+                on: {
+                  click: function($event) {
+                    _vm.dialog = true
+                  }
+                }
+              },
+              [_c("v-icon", { attrs: { color: "red" } }, [_vm._v("delete")])],
+              1
             )
-          ]),
-          _vm._v(" "),
-          _c("v-card-text", [
-            _vm._v(
-              "\n                " +
-                _vm._s(_vm.task.description) +
-                "\n            "
-            )
-          ])
-        ],
-        1
-      ),
+          ],
+          1
+        )
+      ]),
       _vm._v(" "),
       _c(
-        "div",
-        { staticClass: "d-flex flex-row justify-content-between align-center" },
+        "v-dialog",
+        {
+          attrs: { persistent: "", "max-width": "290" },
+          model: {
+            value: _vm.dialog,
+            callback: function($$v) {
+              _vm.dialog = $$v
+            },
+            expression: "dialog"
+          }
+        },
         [
           _c(
-            "div",
-            { staticClass: "d-flex flex-column justify-space-between mr-3" },
+            "v-card",
             [
-              _c(
-                "v-btn",
-                {
-                  staticClass: "mt-1",
-                  attrs: { outlined: "", rounded: "", small: "" },
-                  on: { click: _vm.moveToToDo }
-                },
-                [_vm._v("\n                    Move to Todo\n                ")]
-              ),
+              _c("v-card-title", { staticClass: "error text-h6 text-white" }, [
+                _vm._v("\n                Remove Task?\n            ")
+              ]),
+              _vm._v(" "),
+              _c("v-card-text", { staticClass: "pt-3" }, [
+                _vm._v(
+                  "Once the task is removed, there is no way to recover it. Are you sure to remove it?"
+                )
+              ]),
               _vm._v(" "),
               _c(
-                "v-btn",
-                {
-                  staticClass: "mt-1",
-                  attrs: { outlined: "", rounded: "", small: "" },
-                  on: { click: _vm.moveToInProgress }
-                },
+                "v-card-actions",
                 [
-                  _vm._v(
-                    "\n                    Move to In-Progress\n                "
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "green darken-1", text: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.dialog = false
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    Cancel\n                ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "error darken-1", text: "" },
+                      on: { click: _vm.removeTask }
+                    },
+                    [_vm._v("\n                    Remove\n                ")]
                   )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  staticClass: "mt-1",
-                  attrs: { outlined: "", rounded: "", small: "" },
-                  on: { click: _vm.moveToDone }
-                },
-                [_vm._v("\n                    Move to Done\n                ")]
+                ],
+                1
               )
             ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              staticClass: "bg-white",
-              attrs: { rounded: "" },
-              on: { click: _vm.removeTask }
-            },
-            [_c("v-icon", { attrs: { color: "red" } }, [_vm._v("delete")])],
             1
           )
         ],
         1
       )
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
