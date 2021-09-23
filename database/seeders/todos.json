@@ -1,0 +1,32 @@
+[
+    {
+      "id": 1,
+      "title": "Clean room",
+      "description": "Make sure the room is clean",
+      "status": "todo"
+    },
+    {
+      "id": 2,
+      "title": "Learning code",
+      "description": "Reading the SQL books",
+      "status": "todo"
+    },
+    {
+      "id": 3,
+      "title": "Walking Dog",
+      "description": "The dog needs fun too",
+      "status": "in-progress"
+    },
+    {
+      "id": 4,
+      "title": "Cooking food",
+      "description": "Making dinner for family",
+      "status": "done"
+    },
+    {
+      "id": 5,
+      "title": "Watching Transformer No Way Home",
+      "description": "Yes, the story does not exist",
+      "status": "done"
+    }
+]
