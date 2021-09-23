@@ -39,7 +39,6 @@ const store = new Vuex.Store({
 })
 
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('layout-component', require('./components/LayoutComponent.vue').default);
 Vue.component('sidebar-component', require('./components/Layouts/SidebarComponent.vue').default);
 Vue.component('header-component', require('./components/Layouts/HeaderComponent.vue').default);
