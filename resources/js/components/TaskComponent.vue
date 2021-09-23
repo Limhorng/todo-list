@@ -13,13 +13,13 @@
                             <div
                                 class="d-flex flex-column justify-space-between"
                             >
-                                <v-btn class="mt-1" outlined rounded small>
+                                <v-btn class="mt-1" outlined rounded small @click="moveToToDo">
                                     Move to Todo
                                 </v-btn>
-                                <v-btn class="mt-1" outlined rounded small>
+                                <v-btn class="mt-1" outlined rounded small @click="moveToInProgress">
                                     Move to In-Progress
                                 </v-btn>
-                                <v-btn class="mt-1" outlined rounded small>
+                                <v-btn class="mt-1" outlined rounded small @click="moveToDone">
                                     Move to Done
                                 </v-btn>
                             </div>
@@ -33,6 +33,20 @@ export default {
     props:{
         task:{
             require: true
+        }
+    },
+    methods:{
+        moveToToDo(){
+            const taskId = this.task.id;
+            this.$store.dispatch("task/updateTaskStatusToTodo",taskId);
+        },
+        moveToInProgress(){
+            const taskId = this.task.id;
+            this.$store.dispatch("task/updateTaskStatusToInProgress",taskId);
+        },
+        moveToDone(){
+            const taskId = this.task.id;
+            this.$store.dispatch("task/updateTaskStatusToDone",taskId);
         }
     }
 

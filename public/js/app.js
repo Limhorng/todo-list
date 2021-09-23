@@ -2350,6 +2350,20 @@ __webpack_require__.r(__webpack_exports__);
     task: {
       require: true
     }
+  },
+  methods: {
+    moveToToDo: function moveToToDo() {
+      var taskId = this.task.id;
+      this.$store.dispatch("task/updateTaskStatusToTodo", taskId);
+    },
+    moveToInProgress: function moveToInProgress() {
+      var taskId = this.task.id;
+      this.$store.dispatch("task/updateTaskStatusToInProgress", taskId);
+    },
+    moveToDone: function moveToDone() {
+      var taskId = this.task.id;
+      this.$store.dispatch("task/updateTaskStatusToDone", taskId);
+    }
   }
 });
 
@@ -2544,6 +2558,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2561,7 +2577,7 @@ var task = {
       return state.tasks;
     }
   },
-  actions: {
+  actions: _defineProperty({
     allTasksFromAPI: function allTasksFromAPI(context, filter) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -2585,20 +2601,133 @@ var task = {
           }
         }, _callee);
       }))();
+    },
+    updateTaskStatusToTodo: function updateTaskStatusToTodo(context, taskId) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.get("/api/update-task-status-to-todo?taskId=".concat(taskId)).then(function (response) {
+                  var data = response.data;
+
+                  if (data.status === 200) {
+                    var tasks = context.state.tasks.filter(function (task) {
+                      if (task.id !== taskId) return true;
+                    });
+                    context.commit("filterTasks", {
+                      data: tasks,
+                      filter: null
+                    });
+                    console.log(context.state.tasks);
+                  }
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    updateTaskStatusToInProgress: function updateTaskStatusToInProgress(context, taskId) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return axios.get("/api/update-task-status-to-in-progress?taskId=".concat(taskId)).then(function (response) {
+                  var data = response.data;
+
+                  if (data.status === 200) {
+                    var tasks = context.state.tasks.filter(function (task) {
+                      if (task.id !== taskId) return true;
+                    });
+                    context.commit("filterTasks", {
+                      data: tasks,
+                      filter: null
+                    });
+                    console.log(context.state.tasks);
+                  }
+                });
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    updateTaskStatusToDone: function updateTaskStatusToDone(context, taskId) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return axios.get("/api/update-task-status-to-done?taskId=".concat(taskId)).then(function (response) {
+                  var data = response.data;
+
+                  if (data.status === 200) {
+                    var tasks = context.state.tasks.filter(function (task) {
+                      if (task.id !== taskId) return true;
+                    });
+                    context.commit("filterTasks", {
+                      data: tasks,
+                      filter: null
+                    });
+                    console.log(context.state.tasks);
+                  }
+                });
+
+              case 2:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
     }
-  },
+  }, "allTasksFromAPI", function allTasksFromAPI(context, filter) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.next = 2;
+              return axios.get("/api/get-tasks").then(function (response) {
+                var data = response.data;
+                context.commit("filterTasks", {
+                  data: data,
+                  filter: filter
+                }); // console.log(context.state.tasks)
+              });
+
+            case 2:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5);
+    }))();
+  }),
   mutations: {
     filterTasks: function filterTasks(state, _ref) {
       var data = _ref.data,
           filter = _ref.filter;
       var tasks = data.tasks;
 
-      if (filter) {
+      if (filter !== null && ['todo', 'done', 'in-progress'].includes(filter)) {
         tasks = tasks.filter(function (task) {
           return task.status === filter;
         });
       }
 
+      console.log("Before calling API:", state.tasks);
       return state.tasks = tasks;
     }
   }
@@ -39542,7 +39671,8 @@ var render = function() {
               "v-btn",
               {
                 staticClass: "mt-1",
-                attrs: { outlined: "", rounded: "", small: "" }
+                attrs: { outlined: "", rounded: "", small: "" },
+                on: { click: _vm.moveToToDo }
               },
               [
                 _vm._v(
@@ -39555,7 +39685,8 @@ var render = function() {
               "v-btn",
               {
                 staticClass: "mt-1",
-                attrs: { outlined: "", rounded: "", small: "" }
+                attrs: { outlined: "", rounded: "", small: "" },
+                on: { click: _vm.moveToInProgress }
               },
               [
                 _vm._v(
@@ -39568,7 +39699,8 @@ var render = function() {
               "v-btn",
               {
                 staticClass: "mt-1",
-                attrs: { outlined: "", rounded: "", small: "" }
+                attrs: { outlined: "", rounded: "", small: "" },
+                on: { click: _vm.moveToDone }
               },
               [
                 _vm._v(

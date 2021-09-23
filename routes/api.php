@@ -22,3 +22,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get("/get-tasks",[TaskController::class,"getTasks"]);
+
+Route::get("/update-task-status-to-todo",[TaskController::class,"updateTaskStatusToToDo"]);
+
+Route::get("/update-task-status-to-in-progress",[TaskController::class,"updateTaskStatusToInProgress"]);
+
+Route::get("/update-task-status-to-done", [TaskController::class, "updateTaskStatusToDone"]);

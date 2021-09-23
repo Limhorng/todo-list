@@ -16,22 +16,36 @@ class TaskController extends Controller
         ]);
     }
 
-    public function updateTaskStatustoToDo(Request $request, $taskId){
-
+    public function updateTaskStatusToToDo(Request $request){
+        $taskId = $request->get("taskId");
+        $task = Task::where('id', $taskId);
+        $task->update([
+            "status" => 'todo'
+        ]);
         return response()->json([
             'status' => 200,
             'message' => 'Task has been updated successfullly',
         ]);
     }
     
-    public function updateTaskStatustoInProgress(Request $request, $taskId){
+    public function updateTaskStatusToInProgress(Request $request){
+        $taskId = $request->get("taskId");
+        $task = Task::where('id', $taskId);
+        $task->update([
+            "status" => 'in-progress'
+        ]);
         return response()->json([
             'status' => 200,
             'message' => 'Task has been updated successfullly',
         ]);
     }
     
-    public function updateTaskStatustoDone(Request $request, $taskId){
+    public function updateTaskStatusToDone(Request $request){
+        $taskId = $request->get("taskId");
+        $task = Task::where('id', $taskId);
+        $task->update([
+            "status" => 'done'
+        ]);
         return response()->json([
             'status' => 200,
             'message' => 'Task has been updated successfullly',
