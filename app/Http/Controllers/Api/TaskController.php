@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function getTasks(Request $request, $filter){
+    public function getTasks(){
 
         return response()->json([
             'status' => 200,
-            'tasks' => $filter,
+            'tasks' => Task::get(),
         ]);
     }
 

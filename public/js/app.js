@@ -2569,12 +2569,13 @@ var task = {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get("api/todos.json").then(function (response) {
+                return axios.get("/api/get-tasks").then(function (response) {
                   var data = response.data;
                   context.commit("filterTasks", {
                     data: data,
                     filter: filter
-                  }); // console.log(context.state.tasks)
+                  });
+                  console.log(context.state.tasks);
                 });
 
               case 2:
@@ -2590,7 +2591,7 @@ var task = {
     filterTasks: function filterTasks(state, _ref) {
       var data = _ref.data,
           filter = _ref.filter;
-      var tasks = data;
+      var tasks = data.tasks;
 
       if (filter) {
         tasks = tasks.filter(function (task) {

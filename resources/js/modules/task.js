@@ -13,11 +13,11 @@ const task = {
 
     actions: {
         async allTasksFromAPI(context,filter) {
-            await axios.get("api/todos.json")
+            await axios.get("/api/get-tasks")
                 .then((response) => {
                     const data = response.data
                     context.commit("filterTasks",{data,filter})
-                    // console.log(context.state.tasks)
+                    console.log(context.state.tasks)
 
                 })
                 // .catch(() => {
@@ -28,7 +28,7 @@ const task = {
 
     mutations: {
         filterTasks(state,{data,filter}){
-            let tasks = data
+            let tasks = data.tasks
             if (filter){
                 tasks = tasks.filter((task) => task.status === filter)
             }
