@@ -2483,7 +2483,7 @@ __webpack_require__.r(__webpack_exports__);
     removeTask: function removeTask() {
       var taskId = this.task.id;
       this.$store.dispatch("task/deleteTask", taskId);
-      dialog = false;
+      this.dialog = false;
     }
   }
 });

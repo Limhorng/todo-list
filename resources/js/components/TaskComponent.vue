@@ -95,7 +95,7 @@ export default {
         removeTask() {
             const taskId = this.task.id;
             this.$store.dispatch("task/deleteTask", taskId);
-            dialog = false
+            this.dialog = false
         }
     }
 };
