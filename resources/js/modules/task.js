@@ -48,9 +48,9 @@ const task = {
                     }
                     
                 })
-                // .catch(() => {
-                //     console.log("Error........")
-                // })
+                .catch(() => {
+                    console.log("Error........")
+                })
         },
 
         async updateTaskStatusToDone(context,taskId) {
@@ -62,9 +62,9 @@ const task = {
                         context.commit("filterTasks",{data:{tasks},filter:null})
                     }
                 })
-                // .catch(() => {
-                //     console.log("Error........")
-                // })
+                .catch(() => {
+                    console.log("Error........")
+                })
         },
         async allTasksFromAPI(context,filter) {
             await axios.get("/api/get-tasks")

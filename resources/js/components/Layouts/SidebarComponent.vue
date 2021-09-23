@@ -61,16 +61,22 @@ export default {
       this.$store.dispatch("task/allTasksFromAPI", selectedPath );
     },
   },
-  mounted() {
-    const path = this.$route.params.menu; 
-    if (path == "todo") {
-      this.setSelected(1);
-    } else if (path == "in-progress") {
-      this.setSelected(2);
-    } else if (path == "done") {
-      this.setSelected(3);
-    } else {
-      this.setSelected(1);
+  computed:{
+    path() {
+      return this.$route.params.menu; 
+    }
+  },
+  watch:{
+    path() {
+      if (this.path == "todo") {
+        this.setSelected(1);
+      } else if (this.path == "in-progress") {
+        this.setSelected(2);
+      } else if (this.path == "done") {
+        this.setSelected(3);
+      } else {
+        this.setSelected(1);
+      }
     }
   },
 };

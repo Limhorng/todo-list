@@ -2285,17 +2285,22 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.dispatch("task/allTasksFromAPI", selectedPath);
     }
   },
-  mounted: function mounted() {
-    var path = this.$route.params.menu;
-
-    if (path == "todo") {
-      this.setSelected(1);
-    } else if (path == "in-progress") {
-      this.setSelected(2);
-    } else if (path == "done") {
-      this.setSelected(3);
-    } else {
-      this.setSelected(1);
+  computed: {
+    path: function path() {
+      return this.$route.params.menu;
+    }
+  },
+  watch: {
+    path: function path() {
+      if (this.path == "todo") {
+        this.setSelected(1);
+      } else if (this.path == "in-progress") {
+        this.setSelected(2);
+      } else if (this.path == "done") {
+        this.setSelected(3);
+      } else {
+        this.setSelected(1);
+      }
     }
   }
 });
@@ -2654,6 +2659,8 @@ var task = {
                       filter: null
                     });
                   }
+                })["catch"](function () {
+                  console.log("Error........");
                 });
 
               case 2:
@@ -2685,6 +2692,8 @@ var task = {
                       filter: null
                     });
                   }
+                })["catch"](function () {
+                  console.log("Error........");
                 });
 
               case 2:
