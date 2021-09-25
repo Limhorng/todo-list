@@ -119,7 +119,7 @@ export default {
 
             this.dialog = false;
         }
-        
+
     },
     mounted() {
         this.fetchTasks(this.menu);

@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div>
-            <SidebarComponent path="{{$path}}"></SidebarComponent>
+            <SidebarComponent></SidebarComponent>
         </div>
         <div class="container-fluid" style="margin-left: 200px">
             <HeaderComponent></HeaderComponent>
