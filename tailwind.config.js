@@ -9,11 +9,13 @@ module.exports = {
     //     ...defaultTheme.screens,
     // },
     extend: {
-
+        backgroundImage:{
+            'homepage-banner': "url('/images/cover.png')"
+        },
     },
   },
   variants: {
     extend: {},
-  },
+},
   plugins: [],
 }
