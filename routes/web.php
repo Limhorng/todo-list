@@ -14,6 +14,10 @@ use App\Http\Controllers\TaskController;
 |
 */
 
+Route::get('/home', function(){
+    return view('home');
+})->name("todo");
+
 Route::get('/', [TaskController::class, 'index'])->name("todo");
 Route::get('/{path}', function ($path) {
     if (in_array($path, ["todo", "in-progress", "done"])) {
@@ -22,3 +26,4 @@ Route::get('/{path}', function ($path) {
         abort(404);
     }
 });
+
