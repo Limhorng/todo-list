@@ -45,6 +45,7 @@ Vue.component('sidebar-component', require('./components/Layouts/SidebarComponen
 Vue.component('header-component', require('./components/Layouts/HeaderComponent.vue').default);
 Vue.component('content-component', require('./components/Layouts/ContentComponent.vue').default);
 Vue.component('task-component', require('./components/TaskComponent.vue').default);
+Vue.component('side-menu-component', require('./components/TailwindCSS/SideMenuComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
