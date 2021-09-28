@@ -1,39 +1,27 @@
 <template>
     <div class="z-100">
-    <div
-      :class="open ? 'bg-black-500 opacity-25':'opacity-100'"
-      class="absolute top-0 left-0 h-screen w-screen"
-    >
-      <button @click="tog()" class="text-black text-2xl p-2 font-bold">&#9776;</button>
-      <!-- <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div> -->
+      <button class="btn" @click="tog()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    
+      <nav class="h-screen w-80 bg-dark position-absolute right-0 top-0 text-white z-90" :class="open ? 'navbar-open' : 'navbar-close'">
+        <div>
+            <h1>Home</h1>
+        </div>
+        <div>
+            <h1>Home</h1>
+        </div>
+        <div>
+            <h1>Home</h1>
+        </div>
+        <div>
+            <h1>Home</h1>
+        </div>
+        
+      </nav>
     </div>
-    <nav
-      :class="open ? 'navbar-open' : 'navbar-close'"
-      class="navbar w-64 absolute overflow-x-scroll bg-gray-700 right-0 top-0 h-screen"
-    >
-      <div class="flex pr-2 justify-end">
-        <button @click="tog()" class="p-2 text-white text-xl font-bold">&#9747;</button>
-      </div>
-      <h1 class="text-xl text-center font-bold pt-5">Menu</h1>
-      <ul class="list-none text-white text-center">
-        <li class="my-8">
-          <a href="#"></a>Teams
-        </li>
-        <li class="my-8">
-          <a href="#"></a>Projects
-        </li>
-        <li class="my-8">
-          <a href="#"></a>Favourites
-        </li>
-        <li class="my-8">
-          <a href="#"></a>Notifications
-        </li>
-        <li class="my-8">
-          <a href="#"></a>Members
-        </li>
-      </ul>
-    </nav>
-  </div>
 </template>
 
 <script>
@@ -61,5 +49,6 @@ export default {
     }
     .navbar-close {
     transform: translateX(-100%);
+    display: none;
     }
 </style>

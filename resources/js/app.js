@@ -41,11 +41,14 @@ const store = new Vuex.Store({
 
 
 Vue.component('layout-component', require('./components/LayoutComponent.vue').default);
-Vue.component('sidebar-component', require('./components/Layouts/SidebarComponent.vue').default);
-Vue.component('header-component', require('./components/Layouts/HeaderComponent.vue').default);
-Vue.component('content-component', require('./components/Layouts/ContentComponent.vue').default);
+Vue.component('sidebar-component', require('./components/layouts/SidebarComponent.vue').default);
+Vue.component('header-component', require('./components/layouts/HeaderComponent.vue').default);
+Vue.component('content-component', require('./components/layouts/ContentComponent.vue').default);
 Vue.component('task-component', require('./components/TaskComponent.vue').default);
 Vue.component('side-menu-component', require('./components/TailwindCSS/SideMenuComponent.vue').default);
+Vue.component('title-with-background', require('./components/home/TitleWithBackgroundComponent.vue').default);
+Vue.component('service-card', require('./components/home/ServiceCardComponent.vue').default);
+Vue.component('price-card', require('./components/home/PriceCardComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
